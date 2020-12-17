@@ -272,16 +272,10 @@ async function uploadFiles(
     logger
   );
 
-  core.debug(
-    `sarifPayload after fingerprinting is:\n${JSON.stringify(
-      sarifPayload,
-      null,
-      4
-    )}`
-  );
+  core.debug(`sarifPayload after fingerprinting is:\n${sarifPayload}`);
 
   const sarifPayloadDest = `${process.env.RUNNER_TEMP}/sarifPayload.json`;
-  fs.writeFileSync(sarifPayloadDest, JSON.stringify(sarifPayload, null, 4));
+  fs.writeFileSync(sarifPayloadDest, sarifPayload);
 
   const artifactClient = artifact.create();
   const artifactName = "sarifPayload";
