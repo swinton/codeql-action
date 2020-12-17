@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import zlib from "zlib";
 
+import artifact from "@actions/artifact";
 import * as core from "@actions/core";
 import fileUrl from "file-url";
 import * as jsonschema from "jsonschema";
@@ -277,6 +278,24 @@ async function uploadFiles(
       null,
       4
     )}`
+  );
+
+  const sarifPayloadDest = `${process.env.RUNNER_TEMP}/sarifPayload.json`;
+  fs.writeFileSync(sarifPayloadDest, JSON.stringify(sarifPayload, null, 4));
+
+  const artifactClient = artifact.create();
+  const artifactName = "sarifPayload";
+  const files = [sarifPayloadDest];
+  const rootDirectory = process.env.RUNNER_TEMP as string;
+  const options = {
+    continueOnError: true,
+  };
+
+  await artifactClient.uploadArtifact(
+    artifactName,
+    files,
+    rootDirectory,
+    options
   );
 
   const zippedSarif = zlib.gzipSync(sarifPayload).toString("base64");
