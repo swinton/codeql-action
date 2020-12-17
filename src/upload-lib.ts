@@ -271,6 +271,14 @@ async function uploadFiles(
     logger
   );
 
+  core.debug(
+    `sarifPayload after fingerprinting is:\n${JSON.stringify(
+      sarifPayload,
+      null,
+      4
+    )}`
+  );
+
   const zippedSarif = zlib.gzipSync(sarifPayload).toString("base64");
   const checkoutURI = fileUrl(checkoutPath);
 
