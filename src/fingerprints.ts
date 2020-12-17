@@ -264,6 +264,7 @@ export function addFingerprints(
         checkoutPath,
         logger
       );
+      logger.info(`Computing fingerprint for ${filepath}`);
       if (!filepath) {
         continue;
       }

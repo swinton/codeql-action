@@ -48,6 +48,12 @@ async function run() {
 
     const gitHubVersion = await getGitHubVersion(apiDetails);
 
+    core.debug(
+      `actionsUtil.getRequiredInput("checkout_path"): ${actionsUtil.getRequiredInput(
+        "checkout_path"
+      )}`
+    );
+
     const uploadStats = await upload_lib.upload(
       actionsUtil.getRequiredInput("sarif_file"),
       parseRepositoryNwo(actionsUtil.getRequiredEnvParam("GITHUB_REPOSITORY")),
