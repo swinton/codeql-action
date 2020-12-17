@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import zlib from "zlib";
 
-import artifact from "@actions/artifact";
+import * as artifact from "@actions/artifact";
 import * as core from "@actions/core";
 import fileUrl from "file-url";
 import * as jsonschema from "jsonschema";
