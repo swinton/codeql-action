@@ -289,5 +289,5 @@ export function addFingerprints(
     hash(teeCallback, fileContents);
   }
 
-  return JSON.stringify(sarif);
+  return JSON.stringify(sarif, null, 4);
 }
